@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\a09b7e3789ee57c8ea74e0a78bda4f6fec4f0357\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_15c293cba74757df098b7eb5d2cc79a6e663ee9f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\9858e7166df38ddbc4fae2ee6cd193785a1937cb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_a1e6d5c60b6e8eab7c2ba8c4e957d0fd5fb069db.jar" />
+    </item>
+
+</items>
