@@ -10,6 +10,10 @@
         <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
 
+    <style name="Theme.AppCompat.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
     <!-- For setting text color of the ActionBar title -->
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">

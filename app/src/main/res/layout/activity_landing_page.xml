@@ -101,9 +101,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:padding="3dp"
-        android:id="@+id/weatherLayout">
+        android:id="@+id/weatherLayout"
+        android:background="@drawable/gradient_border">
 
         <ImageView
             android:id="@+id/weatherIcon"
@@ -238,16 +239,30 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
-
     </RelativeLayout>
 
+    <!-- Layout for the Activity buttons section -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3.5"
         android:padding="5dp"
         android:id="@+id/activityLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4"
+            android:gravity="start">
+
+            <Button
+                android:background="@drawable/logout_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="To Do List"
+                android:id="@+id/goToList"/>
+        </LinearLayout>
 
     </RelativeLayout>
 

@@ -52,6 +52,9 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
     TextView txtCelsius;
     ImageView weatherIcon;
 
+    // Activity components
+    Button toDoList;
+
     LocationManager locationManager;
     String provider;
     static double lat;
@@ -71,6 +74,8 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         // Set Location data such as coordinates, city, etc.
         setLocationComponents();
 
+        // Set the buttons for corresponding Activities
+        setActivityComponents();
     }
 
     // Function to set the UI components after Activity creation
@@ -141,6 +146,20 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
             Toast.makeText(getApplicationContext(), "No Location Service", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void setActivityComponents() {
+        toDoList = (Button) findViewById(R.id.goToList);
+        toDoList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LandingPageActivity.this, ToDoListActivity.class);
+                intent.putExtra(IntentConstants.INTENT_TO_DO_LIST, email);
+                startActivity(intent);
+                //finish();
+            }
+        });
+    }
+
 
     @Override
     protected void onPause() {
