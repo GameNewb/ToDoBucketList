@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 import edu.sjsu.kyle.todobucketlist.Weather.OpenWeatherMap;
 import edu.sjsu.kyle.todobucketlist.Weather.WeatherCommons;
@@ -115,7 +116,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         txtCelsius = (TextView) findViewById(R.id.txtCelsius);
         weatherIcon = (ImageView) findViewById(R.id.weatherIcon);
 
-        // Set location service
+        // Set location service and provider
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         provider = locationManager.getBestProvider(new Criteria(), false);
 
@@ -133,6 +134,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
             }, PERMISSION);
         }
 
+        // Get the location
         Location location = locationManager.getLastKnownLocation(provider);
         if (location == null) {
             Log.e("LOCATION", "No Location!");
