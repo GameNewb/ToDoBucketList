@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "520531060653",
+    "project_id": "todobucketlist-187923"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520531060653:android:95fe836d83f7f644",
+        "android_client_info": {
+          "package_name": "edu.sjsu.kyle.todobucketlist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520531060653-52u2tpvmrb0j95cbrvpp3254p2ngfv55.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.sjsu.kyle.todobucketlist",
+            "certificate_hash": "9f43d4e5c44d60cf0d83c0709fa76fd58a432cc1"
+          }
+        },
+        {
+          "client_id": "520531060653-s7cd7bf8g0g0ogqpqcheajdomncdquuq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1rXKoZY99gXSAuuncMeKGKDSFRB1oD70"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

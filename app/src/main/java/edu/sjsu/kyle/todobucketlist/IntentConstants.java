@@ -6,6 +6,15 @@ package edu.sjsu.kyle.todobucketlist;
 
 public class IntentConstants
 {
+    // Google Sign On and Profile Constants
+    public final static String INTENT_GOOGLE_API = "googleAPI";
+    public final static int INTENT_GOOGLE_REQUEST_CODE = 900;
+    public final static int INTENT_GOOGLE_REQUEST_CODE_SIGNOUT = 901;
+    public final static String INTENT_SIGNIN_NAME = "signInName";
+    public final static String INTENT_SIGNIN_EMAIL = "signInEmail";
+    public final static String INTENT_SIGNIN_PHOTO = "signInPhoto";
+
+    // To-Do list constants
     public final static int INTENT_REQUEST_CODE = 1;
     public final static int INTENT_RESULT_CODE = 1;
     public final static int INTENT_REQUEST_CODE_TWO = 2;

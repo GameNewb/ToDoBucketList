@@ -3,12 +3,57 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\Kiyeon\.android\build-cache\a09b7e3789ee57c8ea74e0a78bda4f6fec4f0357\output\jars\classes.jar"
+        jar="C:\Users\Kiyeon\.android\build-cache\5a3dcaa5ad0c310f6bd18ad4f64129b2fa675e19\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.2"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_15c293cba74757df098b7eb5d2cc79a6e663ee9f.jar" />
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_5de7a1a5e5066cfe2b8e5949f690c82d4d9f5ffc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\955ced41185f063438435f8f9f6ce0cda47eba99\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ef65e4780d67d06abddd6e2d15dd4e0519ad8d8a">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_57d503d8e043b3c5e2c64f3c10d6050327f526f4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\3c8ee374a950e236f2ddfd502ddab7a3a66b562d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_c149e19cb8d94463b912c1097512c17aebd64288.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\c9fb667fc4ac71f277acddd3bf67db7ab1bc1833\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_4ece06aabd6d3f7a562da7e0ba66c51e29815b05.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\fa2929e301d5c5c13f153218cfac728f9cab4b9b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="aba37a3eec04e174dc59f00cf4bd7992061d847a">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_0b5a36043d53750258d0b8562ea9e5adb086b54d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\56f5849a8659f4a086d6a48a797e84ba80ae550d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e72c498ef3e345135b6bfdf7fc83c6b905228ade">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_eaa21bc39fbf93f9fde9f07b4f696c5b66baa429.jar" />
     </item>
     <item
         is-multidex="false"
@@ -18,6 +63,141 @@
         revision="26.0.2"
         sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
         <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_a1e6d5c60b6e8eab7c2ba8c4e957d0fd5fb069db.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\0b66de7b197847411f1125606aebdb108daa97ff\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_e615f5b23da56fd4e0aa36304547e53606a9bc91.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\3c6cb078de8eec9bc915815cd8f4d087c66dd14a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="30854fe0b2a6e495a821d8f41f52c0a1d18d8d2a">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_9dccd8089736de47998087ebfd05753f242eb5bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\glide-3.7.0_0f52f247c63b989170b97f0e4e439b453cbe0e6b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\f4b2942c504ebf22c8b6f65ed675152f9ca29cb2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0e39662b49ef66950c0941aa5fd4c49346a7c341">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_571f5732ea058bacc49f3a8aa8c3005f85fefd76.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\11b7f7516955db5d5eebb33054dae858fead4724\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_bbc0118d4c7d0b04400149cbcb43c67042809f7e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\a662398871f6550eba02bb9634b89705265d9fc1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_3da0a5cb6ab17d2b6ce0619eb9cf08a9b1bdd820.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\392679d960130a45f6649b1ab0aa2e9bc3bebc62\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d68bbf92de9721b02a31a3833abfdc90144c7e39">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_95650598dbc269ff5c8ecc0a2e1fb174b5bd201d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\Development\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\support-annotations-25.2.0_21c7059cef987b6b5551a8c90ab530aec198dc98.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\9e3f9a44d7bed213e839835b3df09c2c38cd2f8c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a5f50e080b426327fe1851f6f7b5f836bff6ac9f">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_a3975a6b2ed72696da424b68235946042581ca2d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\41f93838c405b7c246219050525b82e83f01b276\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a611d7a00671ec4eb3050a21425fae955a38eb8a">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_5e625b0b95c2b217a83972e1ab48ed42ae2206ea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\a09b7e3789ee57c8ea74e0a78bda4f6fec4f0357\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_15c293cba74757df098b7eb5d2cc79a6e663ee9f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\4d54068bddbbc9bd365dc1b61fc432c860447d66\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_6f6c6cf7a82031e736abf2931d18ac85d292ba26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\44adae5133066fbaf6ebc09d470238689b29237b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d410043f93e71bb0179ba86b85726dd080f14b79">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_5be39aaa13dac3455952e73699064760786b1a20.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\cadda36c699701a23efb9df201a7059f390d9b97\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_6e94429d08648e0738a5e0a4ed7d39b42d5bf3ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Kiyeon\.android\build-cache\f33bcee5aeb5c03ba3fdb1624817b2d6d3e5c2ae\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_5dc6b8fda59437af445dc02a2ddab67af7eb5aad.jar" />
     </item>
 
 </items>
