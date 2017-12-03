@@ -243,12 +243,12 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
             txtCity.setText(String.format("%s, %s", openWeatherMap.getName(), openWeatherMap.getSys().getCountry()));
             txtLastUpdate.setText(String.format("Last Updated: %s", WeatherCommons.getDateNow()));
             txtDescription.setText(String.format("%s", openWeatherMap.getWeather().get(0).getDescription()));
-            txtHumidity.setText(String.format("%d%%", openWeatherMap.getMain().getHumidity()));
-            txtTime.setText(String.format("%s/%s",
+            txtHumidity.setText("Humidity: " + String.format("%d%%", openWeatherMap.getMain().getHumidity()));
+            txtTime.setText(String.format("Sunrise: %s\nSunset: %s",
                     WeatherCommons.unixTimeStampToDateTime(openWeatherMap.getSys().getSunrise()),
                     WeatherCommons.unixTimeStampToDateTime(openWeatherMap.getSys().getSunset())));
 
-            txtCelsius.setText(String.format("%.2f °F", convertTemperature(openWeatherMap.getMain().getTemp())));
+            txtCelsius.setText(String.format("%.0f °F", convertTemperature(openWeatherMap.getMain().getTemp())));
             Picasso.with(LandingPageActivity.this)
                     .load(WeatherCommons.getImage(openWeatherMap.getWeather().get(0).getIcon()))
                     .into(weatherIcon);
