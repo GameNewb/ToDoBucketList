@@ -8,6 +8,7 @@
     android:background="@drawable/gradient_background"
     tools:context="edu.sjsu.kyle.todobucketlist.ToDoListActivity">
 
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

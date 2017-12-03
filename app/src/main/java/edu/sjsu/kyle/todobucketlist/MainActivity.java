@@ -1,13 +1,17 @@
 package edu.sjsu.kyle.todobucketlist;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -20,9 +24,16 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import org.w3c.dom.Text;
+
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
 
     private SignInButton signInButton;
+    private TextView headerText;
+    private TextView headerSubText;
+    private Typeface typeface;
     private GoogleApiClient googleApiClient;
     int signOutCode;
 
@@ -30,9 +41,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set header text font
+        setHeaderText();
+
+        // Set button integration
         signInButton = (SignInButton) findViewById(R.id.googleLogin);
         signInButton.setOnClickListener(this);
 
+        // Set signInOptions and googleApiClinet
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API, signInOptions).build();
 
@@ -54,6 +71,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    private void setHeaderText()
+    {
+        AssetManager am = getApplicationContext().getAssets();
+        typeface = Typeface.createFromAsset(am,
+                String.format(Locale.US, "fonts/%s", "ConcursoItalian_BTN.ttf"));
+        headerText = (TextView) findViewById(R.id.headerText);
+        headerSubText = (TextView) findViewById(R.id.headerSubText);
+        headerText.setTypeface(typeface);
+        headerSubText.setTypeface(typeface);
     }
 
     // Function to signIn user

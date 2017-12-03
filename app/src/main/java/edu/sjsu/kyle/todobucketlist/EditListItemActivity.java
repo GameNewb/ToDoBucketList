@@ -14,6 +14,7 @@ public class EditListItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_list_item);
+        getSupportActionBar().setTitle("Edit Things To Do");
 
         Intent intent = getIntent();
         inputText = intent.getStringExtra(IntentConstants.INTENT_LIST_DATA);

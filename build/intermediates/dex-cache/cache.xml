@@ -3,21 +3,12 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\Kiyeon\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jar="C:\Users\Kiyeon\.android\build-cache\f63fdd1bfeeab4fbd56811bdb1671aa0e28f52ea\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="26.0.2"
-        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
-        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\gson-2.7_077e28c355024cde69e6f6c9aed2d2adc787e9b5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Kiyeon\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_66979cd9a1e3a8517bc16a4ffc948aead9bd7b67.jar" />
+        sha1="e84b30031d4bab89a2b5c45af4eb9213828524dd">
+        <dex dex="D:\Users\Kiyeon\Desktop\SJSU\CS 175\ToDoBucketList\app\build\intermediates\pre-dexed\debug\classes_6fdfc9a641d172cf467667b7dd246669ddbec28e.jar" />
     </item>
 
 </items>

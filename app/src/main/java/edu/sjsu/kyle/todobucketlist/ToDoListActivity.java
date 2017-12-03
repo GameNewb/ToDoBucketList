@@ -5,10 +5,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.daimajia.swipe.SwipeLayout;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -19,26 +24,34 @@ public class ToDoListActivity extends AppCompatActivity {
 
     ListView listView;
     ArrayList<String> arrayList;
-    ArrayAdapter<String> arrayAdapter;
+    ArraySwipeAdapter<String> arrayAdapter;
     String inputText;
     int position;
 
     String email;
     String toDoTxt;
 
+    SwipeLayout swipeLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+        getSupportActionBar().setTitle("To Do List");
 
         // Set txt file name
         setTxtFileName();
 
+        // Initialize the list and its adapter
         listView = (ListView) findViewById(R.id.toDoList);
         arrayList = new ArrayList<>();
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        arrayAdapter = new ArraySwipeAdapter<String>(this, R.layout.listview_item, R.id.position, arrayList);
         listView.setAdapter(arrayAdapter);
+
+        // Read from the txt file
         readFromFile();
+
+        // Set the appropriate touch gestures
         setClicks();
     }
 
@@ -145,6 +158,60 @@ public class ToDoListActivity extends AppCompatActivity {
                 intent.putExtra(IntentConstants.INTENT_LIST_DATA, arrayList.get(position).toString());
                 intent.putExtra(IntentConstants.INTENT_ITEM_POSITION, position);
                 startActivityForResult(intent, IntentConstants.INTENT_REQUEST_CODE_TWO);
+            }
+        });
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                Log.e("ListView", "onScrollStateChanged");
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
+    }
+
+    // Unused code from the library
+    private void setSwipeLayout()
+    {
+        swipeLayout = (SwipeLayout) findViewById(R.id.swipeLayout);
+        // Set show mode
+        swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
+
+        // Add drag edge.(If the BottomView has 'layout_gravity' attribute, this line is unnecessary)
+
+        swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
+            @Override
+            public void onClose(SwipeLayout layout) {
+                //when the SurfaceView totally cover the BottomView.
+            }
+
+            @Override
+            public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
+                //you are swiping.
+            }
+
+            @Override
+            public void onStartOpen(SwipeLayout layout) {
+
+            }
+
+            @Override
+            public void onOpen(SwipeLayout layout) {
+                //when the BottomView totally show.
+            }
+
+            @Override
+            public void onStartClose(SwipeLayout layout) {
+
+            }
+
+            @Override
+            public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
+                //when user's hand released.
             }
         });
     }
