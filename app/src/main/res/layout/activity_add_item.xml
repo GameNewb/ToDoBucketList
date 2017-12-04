@@ -14,8 +14,10 @@
         android:layout_weight="6"
         android:id="@+id/toAddItem"
         android:hint="Add your To-Do item here"
-        android:textSize="20sp"
-        android:gravity="top"/>
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryText"
+        android:padding="10dp"
+        android:gravity="top" />
     
     <Button
         android:layout_width="match_parent"

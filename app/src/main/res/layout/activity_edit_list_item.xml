@@ -14,7 +14,9 @@
         android:layout_weight="6"
         android:id="@+id/toEditItem"
         android:hint="Add your To-Do item here"
-        android:textSize="20sp"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryText"
+        android:padding="10dp"
         android:gravity="top"/>
 
     <Button
