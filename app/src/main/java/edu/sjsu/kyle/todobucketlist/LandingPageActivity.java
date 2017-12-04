@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -25,8 +27,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Locale;
 
 import edu.sjsu.kyle.todobucketlist.Weather.OpenWeatherMap;
 import edu.sjsu.kyle.todobucketlist.Weather.WeatherCommons;
@@ -35,6 +40,8 @@ import edu.sjsu.kyle.todobucketlist.Weather.WeatherHelper;
 public class LandingPageActivity extends AppCompatActivity implements LocationListener {
 
     // Profile components
+    TextView nameField;
+    TextView emailField;
     Button logOut;
     TextView userName;
     TextView userEmail;
@@ -55,6 +62,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
     // Activity components
     Button toDoList;
 
+    // Location and weather components
     LocationManager locationManager;
     String provider;
     static double lat;
@@ -63,10 +71,13 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
     int PERMISSION = 0;
 
+    private Typeface typeface;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
+        getSupportActionBar().setTitle("The Procrastinator");
 
         // Set Profile UI Components
         setProfileUIComponents();
@@ -80,6 +91,13 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
     // Function to set the UI components after Activity creation
     private void setProfileUIComponents() {
+        AssetManager am = getApplicationContext().getAssets();
+        typeface = Typeface.createFromAsset(am,
+                String.format(Locale.US, "fonts/%s", "ConcursoItalian_BTN.ttf"));
+
+        // Get appropriate view ID
+        nameField = (TextView) findViewById(R.id.profileNameTag);
+        emailField = (TextView) findViewById(R.id.profileEmailTag);
         userName = (TextView) findViewById(R.id.profileName);
         userEmail = (TextView) findViewById(R.id.profileEmail);
         userPic = (ImageView) findViewById(R.id.profilePic);
@@ -90,6 +108,13 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         name = intent.getStringExtra(IntentConstants.INTENT_SIGNIN_NAME);
         email = intent.getStringExtra(IntentConstants.INTENT_SIGNIN_EMAIL);
         imageUrl = intent.getStringExtra(IntentConstants.INTENT_SIGNIN_PHOTO);
+
+        // Set the font style of the texts
+        nameField.setTypeface(typeface);
+        emailField.setTypeface(typeface);
+        userName.setTypeface(typeface);
+        userEmail.setTypeface(typeface);
+        logOut.setTypeface(typeface);
 
         // Set appropriate user profile fields
         userName.setText(name);
@@ -120,6 +145,14 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         txtTime = (TextView) findViewById(R.id.txtTime);
         txtCelsius = (TextView) findViewById(R.id.txtCelsius);
         weatherIcon = (ImageView) findViewById(R.id.weatherIcon);
+
+        // Set font of the text fields
+        txtCity.setTypeface(typeface);
+        txtLastUpdate.setTypeface(typeface);
+        txtDescription.setTypeface(typeface);
+        txtHumidity.setTypeface(typeface);
+        txtTime.setTypeface(typeface);
+        txtCelsius.setTypeface(typeface);
 
         // Set location service and provider
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -232,7 +265,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog.setTitle("Please wait...");
-            progressDialog.show();
+            //progressDialog.show();
         }
 
         @Override
@@ -254,11 +287,13 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
                 return;
             }
 
+            // Parse JSON data
             Gson gson = new Gson();
             Type mType = new TypeToken<OpenWeatherMap>(){}.getType();
             openWeatherMap = gson.fromJson(s, mType);
-            progressDialog.dismiss();
+            //progressDialog.dismiss();
 
+            // Set the text of the fields
             txtCity.setText(String.format("%s, %s", openWeatherMap.getName(), openWeatherMap.getSys().getCountry()));
             txtLastUpdate.setText(String.format("Last Updated: %s", WeatherCommons.getDateNow()));
             txtDescription.setText(String.format("%s", openWeatherMap.getWeather().get(0).getDescription()));
@@ -266,6 +301,8 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
             txtTime.setText(String.format("Sunrise: %s\nSunset: %s",
                     WeatherCommons.unixTimeStampToDateTime(openWeatherMap.getSys().getSunrise()),
                     WeatherCommons.unixTimeStampToDateTime(openWeatherMap.getSys().getSunset())));
+
+
 
             txtCelsius.setText(String.format("%.0f °F", convertTemperature(openWeatherMap.getMain().getTemp())));
             Picasso.with(LandingPageActivity.this)

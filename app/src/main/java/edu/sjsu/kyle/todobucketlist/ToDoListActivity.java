@@ -1,35 +1,68 @@
 package edu.sjsu.kyle.todobucketlist;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
-public class ToDoListActivity extends AppCompatActivity {
+import edu.sjsu.kyle.todobucketlist.Database.DBHelper;
 
+public class ToDoListActivity extends AppCompatActivity{
+
+    // Variables for the list item and its adapters
     ListView listView;
     ArrayList<String> arrayList;
+    ArrayList<String> taskList;
     ArraySwipeAdapter<String> arrayAdapter;
     String inputText;
+    TextView listItems;
+    Button deleteItem;
     int position;
 
+    // Variables for the customized txt file
     String email;
     String toDoTxt;
+
+    // Database variable
+    DBHelper dbHelper;
 
     SwipeLayout swipeLayout;
 
@@ -39,10 +72,16 @@ public class ToDoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_to_do_list);
         getSupportActionBar().setTitle("To Do List");
 
+        dbHelper = new DBHelper(this);
+
+        // Set SwipeLayout
+        setSwipeLayout();
+
         // Set txt file name
         setTxtFileName();
 
         // Initialize the list and its adapter
+        //loadTaskList();
         listView = (ListView) findViewById(R.id.toDoList);
         arrayList = new ArrayList<>();
         arrayAdapter = new ArraySwipeAdapter<String>(this, R.layout.listview_item, R.id.position, arrayList);
@@ -55,7 +94,7 @@ public class ToDoListActivity extends AppCompatActivity {
         setClicks();
     }
 
-    public void onClick(View v)
+    public void onItemClick(View v)
     {
         Intent intent = new Intent();
         intent.setClass(ToDoListActivity.this, AddItemActivity.class);
@@ -68,19 +107,22 @@ public class ToDoListActivity extends AppCompatActivity {
 
         if(resultCode == IntentConstants.INTENT_REQUEST_CODE)
         {
+            // Save to array and database after ADDING
             inputText = data.getStringExtra(IntentConstants.INTENT_ADD_ITEM);
             arrayList.add(inputText);
+            dbHelper.insertNewTask(inputText);
             arrayAdapter.notifyDataSetChanged();
             setClicks();
-
-            //readFromFile();
         }
         else if(resultCode == IntentConstants.INTENT_RESULT_CODE_TWO)
         {
+            // Save/update the array and database after EDITING
             inputText = data.getStringExtra(IntentConstants.INTENT_EDIT_ITEM);
             position = data.getIntExtra(IntentConstants.INTENT_ITEM_POSITION, -1);
+            dbHelper.deleteTask(arrayList.get(position));
             arrayList.remove(position);
             arrayList.add(position, inputText);
+            dbHelper.insertNewTask(inputText);
             arrayAdapter.notifyDataSetChanged();
         }
     }
@@ -146,6 +188,41 @@ public class ToDoListActivity extends AppCompatActivity {
         }
     }
 
+    // Function that deletes the list item from the file
+    private void removeItemFromFile(String itemToRemove)
+    {
+        try {
+            // Create a tempfile to store the output
+            File inputFile = new File(toDoTxt);
+            File tempFile = new File("tempFile.txt");
+
+            // Initialize the reader/writer
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+            String currentLine;
+
+            // Write to the file while there is a line
+            while((currentLine = reader.readLine()) != null)
+            {
+                String trimmedLine = currentLine.trim();
+
+                if(trimmedLine.equals(itemToRemove)) continue;
+                writer.write(currentLine + System.getProperty("line.separator"));
+            }
+
+            // Close reader/writer and rename the file to be opened later
+            writer.close();
+            reader.close();
+            boolean successful = tempFile.renameTo(inputFile);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Function to set the onClickListeners for each list item
     private void setClicks()
     {
@@ -174,45 +251,93 @@ public class ToDoListActivity extends AppCompatActivity {
         });
     }
 
-    // Unused code from the library
+    // Function to initialize the list and adapter
+    // Adds data to array from database
+    private void loadTaskList()
+    {
+        taskList = dbHelper.getTaskList();
+        listView = (ListView) findViewById(R.id.toDoList);
+        arrayList = new ArrayList<>();
+
+        if(arrayAdapter == null)
+        {
+            arrayAdapter = new ArraySwipeAdapter<String>(this, R.layout.listview_item, R.id.position, taskList);
+        }
+        else
+        {
+            arrayAdapter.clear();
+            arrayAdapter.addAll(taskList);
+            arrayAdapter.notifyDataSetChanged();
+        }
+
+        listView.setAdapter(arrayAdapter);
+    }
+
+    // Function that deletes the task and updates the UI component and txt file
+    public void deleteTask(View view)
+    {
+        int index = listView.getPositionForView(view);
+
+        removeItemFromFile(arrayList.get(index));
+        arrayList.remove(index);
+        arrayAdapter.notifyDataSetChanged();
+
+        Toast.makeText(ToDoListActivity.this, "Task Deleted", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        // Change menu icon color
+        Drawable icon = menu.getItem(0).getIcon();
+        icon.mutate();
+        icon.setColorFilter(Color.parseColor("#21c08a"), PorterDuff.Mode.SRC_IN);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.addTask:
+                final EditText taskEditText = new EditText(this);
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle("Quick Add Task")
+                        .setMessage("Ugh. Another task? Really?")
+                        .setView(taskEditText)
+                        .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String task = String.valueOf(taskEditText.getText());
+
+                                // Add to array when user clicks the quick add button
+                                arrayList.add(task);
+                                dbHelper.insertNewTask(task);
+                                arrayAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .create();
+                dialog.show();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Set the swipe listeners for the delete button
     private void setSwipeLayout()
     {
-        swipeLayout = (SwipeLayout) findViewById(R.id.swipeLayout);
+        LayoutInflater factory = getLayoutInflater();
+        View view = factory.inflate(R.layout.listview_item, null);
+        swipeLayout = (SwipeLayout) view.findViewById(R.id.swipeLayout);
+
         // Set show mode
-        swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
+        swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 
-        // Add drag edge.(If the BottomView has 'layout_gravity' attribute, this line is unnecessary)
+        deleteItem = (Button) view.findViewById(R.id.delete);
 
-        swipeLayout.addSwipeListener(new SwipeLayout.SwipeListener() {
-            @Override
-            public void onClose(SwipeLayout layout) {
-                //when the SurfaceView totally cover the BottomView.
-            }
-
-            @Override
-            public void onUpdate(SwipeLayout layout, int leftOffset, int topOffset) {
-                //you are swiping.
-            }
-
-            @Override
-            public void onStartOpen(SwipeLayout layout) {
-
-            }
-
-            @Override
-            public void onOpen(SwipeLayout layout) {
-                //when the BottomView totally show.
-            }
-
-            @Override
-            public void onStartClose(SwipeLayout layout) {
-
-            }
-
-            @Override
-            public void onHandRelease(SwipeLayout layout, float xvel, float yvel) {
-                //when user's hand released.
-            }
-        });
     }
+
 }

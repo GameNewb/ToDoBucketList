@@ -27,10 +27,10 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="Name: "
-            android:textSize="18dp"
+            android:textSize="24dp"
             android:textStyle="bold"
-            android:paddingLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/profilePic"
             android:layout_toEndOf="@id/profilePic"
             android:id="@+id/profileNameTag"/>
@@ -39,10 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Your name here"
-            android:textSize="18dp"
+            android:textSize="22dp"
             android:textStyle="bold"
-            android:paddingLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="23dp"
             android:layout_toRightOf="@id/profileNameTag"
             android:layout_toEndOf="@id/profileNameTag"
             android:id="@+id/profileName"/>
@@ -51,9 +50,9 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="Email: "
-            android:textSize="18dp"
+            android:textSize="24dp"
             android:textStyle="bold"
-            android:paddingLeft="5dp"
+            android:paddingLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/profilePic"
             android:layout_toEndOf="@id/profilePic"
@@ -64,10 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Your email here"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:paddingLeft="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_toRightOf="@id/profileEmailTag"
             android:layout_toEndOf="@id/profileEmailTag"
             android:layout_below="@id/profileName"
@@ -76,7 +74,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="2"
+            android:weightSum="2.5"
             android:layout_toRightOf="@id/profilePic"
             android:layout_toEndOf="@id/profilePic"
             android:layout_below="@id/profileEmail"
@@ -86,11 +84,11 @@
                 android:background="@drawable/logout_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight=".8"
                 android:layout_marginTop="2dp"
                 android:text="Log Out"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:id="@+id/logOut"
                 />
         </LinearLayout>
@@ -130,7 +128,7 @@
                 android:layout_weight="1"
                 android:text="80 °F"
                 android:textStyle="bold"
-                android:textSize="32sp"
+                android:textSize="38sp"
                 />
 
         </LinearLayout>
@@ -152,7 +150,7 @@
                 android:layout_weight="2"
                 android:text="Sunny"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="26sp"
                 android:gravity="left" />
 
         </LinearLayout>
@@ -168,13 +166,13 @@
 
             <TextView
                 android:id="@+id/txtCity"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="San Jose, CA"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="32sp"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -186,7 +184,7 @@
             android:layout_toRightOf="@id/weatherIcon"
             android:layout_toEndOf="@id/weatherIcon"
             android:gravity="right"
-            android:layout_marginTop="45dp">
+            android:layout_marginTop="50dp">
 
             <TextView
                 android:id="@+id/txtHumidity"
@@ -195,7 +193,7 @@
                 android:layout_weight="1"
                 android:text="Humidity: "
                 android:textStyle="bold"
-                android:textSize="14sp"
+                android:textSize="22sp"
                 android:gravity="center"/>
         </LinearLayout>
 
@@ -206,7 +204,7 @@
             android:layout_toRightOf="@id/weatherIcon"
             android:layout_toEndOf="@id/weatherIcon"
             android:gravity="right"
-            android:layout_marginTop="70dp">
+            android:layout_marginTop="80dp">
 
             <TextView
                 android:id="@+id/txtTime"
@@ -215,7 +213,7 @@
                 android:layout_weight="1"
                 android:text="Sunrise: \nSunset: "
                 android:textStyle="bold"
-                android:textSize="14sp"
+                android:textSize="22sp"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -225,7 +223,7 @@
             android:layout_height="match_parent"
             android:weightSum="1"
             android:gravity="start"
-            android:layout_marginTop="85dp">
+            android:layout_marginTop="100dp">
 
             <TextView
                 android:id="@+id/txtLastUpdate"
@@ -235,7 +233,7 @@
                 android:paddingLeft="8dp"
                 android:gravity="left"
                 android:text="Last Updated: 02 December 2017 23:08"
-                android:textSize="14sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

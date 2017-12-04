@@ -14,7 +14,8 @@
         android:background="#FF5534"
         android:gravity="center"
         android:tag="Bottom3"
-        android:weightSum="10">
+        android:weightSum="10"
+        android:id="@+id/deleteLayout">
 
         <ImageView
             android:id="@+id/trash"
@@ -38,7 +39,8 @@
             android:layout_weight="4"
             android:background="@drawable/white"
             android:text="Yes,Delete"
-            android:textColor="#FF5534" />
+            android:textColor="#FF5534"
+            android:onClick="deleteTask"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +52,8 @@
         <TextView
             android:id="@+id/position"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace" />
 
     </LinearLayout>
 </com.daimajia.swipe.SwipeLayout>

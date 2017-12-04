@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    // Function to customize the font style of the text
     private void setHeaderText()
     {
         AssetManager am = getApplicationContext().getAssets();

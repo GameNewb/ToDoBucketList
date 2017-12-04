@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     android:background="@drawable/gradient_background"
-    tools:context="edu.sjsu.kyle.todobucketlist.ToDoListActivity">
-
+    tools:context="edu.sjsu.kyle.todobucketlist.ToDoListActivity"
+    android:id="@+id/parentLayout">
 
     <ListView
         android:layout_width="match_parent"
@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:onClick="onClick"/>
+        android:onClick="onItemClick"/>
 
 </RelativeLayout>
