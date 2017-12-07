@@ -31,7 +31,7 @@ public class CanvasActivity extends AppCompatActivity implements View.OnClickLis
     // Buttons
     private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, opacityBtn;
     // Brush sizes
-    private float smallBrush, mediumBrush, largeBrush;
+    private float xxSmallBrush, xSmallBrush, smallBrush, mediumBrush, largeBrush;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,8 @@ public class CanvasActivity extends AppCompatActivity implements View.OnClickLis
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 
         // Sizes from dimensions
+        xxSmallBrush = getResources().getInteger(R.integer.xxsmall_size);
+        xSmallBrush = getResources().getInteger(R.integer.xsmall_size);
         smallBrush = getResources().getInteger(R.integer.small_size);
         mediumBrush = getResources().getInteger(R.integer.medium_size);
         largeBrush = getResources().getInteger(R.integer.large_size);
@@ -122,6 +124,26 @@ public class CanvasActivity extends AppCompatActivity implements View.OnClickLis
             brushDialog.setContentView(R.layout.brush_chooser);
 
             // Listen for clicks on size buttons
+            ImageButton xxSmallBtn = (ImageButton) brushDialog.findViewById(R.id.xxsmall_brush);
+            xxSmallBtn.setOnClickListener(new OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(false);
+                    drawView.setBrushSize(xxSmallBrush);
+                    drawView.setLastBrushSize(xxSmallBrush);
+                    brushDialog.dismiss();
+                }
+            });
+            ImageButton xSmallBtn = (ImageButton) brushDialog.findViewById(R.id.xsmall_brush);
+            xSmallBtn.setOnClickListener(new OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(false);
+                    drawView.setBrushSize(xSmallBrush);
+                    drawView.setLastBrushSize(xSmallBrush);
+                    brushDialog.dismiss();
+                }
+            });
             ImageButton smallBtn = (ImageButton) brushDialog.findViewById(R.id.small_brush);
             smallBtn.setOnClickListener(new OnClickListener(){
                 @Override
@@ -163,6 +185,24 @@ public class CanvasActivity extends AppCompatActivity implements View.OnClickLis
             brushDialog.setContentView(R.layout.brush_chooser);
 
             // Size buttons
+            ImageButton xxSmallBtn = (ImageButton) brushDialog.findViewById(R.id.xxsmall_brush);
+            xxSmallBtn.setOnClickListener(new OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(true);
+                    drawView.setBrushSize(xxSmallBrush);
+                    brushDialog.dismiss();
+                }
+            });
+            ImageButton xSmallBtn = (ImageButton) brushDialog.findViewById(R.id.xsmall_brush);
+            xSmallBtn.setOnClickListener(new OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    drawView.setErase(true);
+                    drawView.setBrushSize(xSmallBrush);
+                    brushDialog.dismiss();
+                }
+            });
             ImageButton smallBtn = (ImageButton) brushDialog.findViewById(R.id.small_brush);
             smallBtn.setOnClickListener(new OnClickListener(){
                 @Override

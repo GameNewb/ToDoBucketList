@@ -50,6 +50,8 @@
     <string name="opacity">Opacity</string>
     <string name="save">Save</string>
     <string name="paint">Paint</string>
+    <string name="xxsml">XX-Small</string>
+    <string name="xsml">X-Small</string>
     <string name="sml">Small</string>
     <string name="med">Medium</string>
     <string name="lrg">Large</string>
