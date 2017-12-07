@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDoBucketList</string>
+    <string name="app_name">Things You Should\'ve Done Yesterday</string>
     <string name="no_cardetails">Start adding your tasks, lazy butt!</string>
     <string name="title_activity_add_task">Add Task</string>
     <string name="title_activity_edit_task">Edit Task</string>

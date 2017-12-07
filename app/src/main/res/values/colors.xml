@@ -6,6 +6,7 @@
     <color name="colorTableRow">#2a2f3a</color>
     <color name="colorTableRowLight">#3c414f</color>
     <color name="colorAccent">#226261</color>
+    <color name="colorAccentDarker">#1e4645</color>
     <color name="colorPrimaryText">#21c08a</color>
     <color name="colorProfileText">#21c08a</color>
     <color name="colorYellowShade">#9a995e</color>

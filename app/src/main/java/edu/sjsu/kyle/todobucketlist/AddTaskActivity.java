@@ -7,7 +7,9 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.res.AssetManager;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -34,6 +36,7 @@ import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class AddTaskActivity extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener,
@@ -57,7 +60,7 @@ public class AddTaskActivity extends AppCompatActivity implements
     private String mRepeatType;
     private String mActive;
 
-    private Uri mCurrentReminderUri;
+    private Uri mCurrentTaskUri;
     private boolean mTaskHasChanged = false;
 
     // Values for orientation change
@@ -75,6 +78,8 @@ public class AddTaskActivity extends AppCompatActivity implements
     private static final long milDay = 86400000L;
     private static final long milWeek = 604800000L;
     private static final long milMonth = 2592000000L;
+
+    private Typeface typeface;
 
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -99,10 +104,10 @@ public class AddTaskActivity extends AppCompatActivity implements
 
         // Get the URI intent when opening the activity
         Intent intent = getIntent();
-        mCurrentReminderUri = intent.getData();
+        mCurrentTaskUri = intent.getData();
 
         // If it's a new reminder, remove the menu icons
-        if (mCurrentReminderUri == null) {
+        if (mCurrentTaskUri == null) {
 
             // Invalidate the options menu, so the "Delete" menu option can be hidden.
             // (It doesn't make sense to delete a reminder that hasn't been created yet.)
@@ -194,6 +199,7 @@ public class AddTaskActivity extends AppCompatActivity implements
         outState.putCharSequence(KEY_ACTIVE, mActive);
     }
 
+    // Function that sets the values and finds the appropriate fields
     public void setValues()
     {
         // Initialize Views
@@ -209,7 +215,7 @@ public class AddTaskActivity extends AppCompatActivity implements
 
         // Initialize default values
         mActive = "true";
-        mRepeat = "true";
+        mRepeat = "false";
         mRepeatNo = Integer.toString(1);
         mRepeatType = "Hour";
 
@@ -222,6 +228,12 @@ public class AddTaskActivity extends AppCompatActivity implements
 
         mDate = mDay + "/" + mMonth + "/" + mYear;
         mTime = mHour + ":" + mMinute;
+
+        // Change font for the edittext
+        AssetManager am = getApplicationContext().getAssets();
+        typeface = Typeface.createFromAsset(am,
+                String.format(Locale.US, "fonts/%s", "ConcursoItalian_BTN.ttf"));
+        mTitleText.setTypeface(typeface);
     }
 
     // On clicking Time picker
@@ -378,7 +390,7 @@ public class AddTaskActivity extends AppCompatActivity implements
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         // If this is a new reminder, hide the "Delete" menu item.
-        if (mCurrentReminderUri == null) {
+        if (mCurrentTaskUri == null) {
             MenuItem menuItem = menu.findItem(R.id.discard_reminder);
             menuItem.setVisible(false);
         }
@@ -397,7 +409,7 @@ public class AddTaskActivity extends AppCompatActivity implements
                     mTitleText.setError("Reminder Title cannot be blank!");
                 }
                 else {
-                    saveReminder();
+                    saveTask();
                     finish();
                 }
                 return true;
@@ -460,13 +472,13 @@ public class AddTaskActivity extends AppCompatActivity implements
 
     private void showDeleteConfirmationDialog() {
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the positive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked the "Delete" button, so delete the reminder.
-                deleteReminder();
+                deleteTask();
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -484,15 +496,15 @@ public class AddTaskActivity extends AppCompatActivity implements
         alertDialog.show();
     }
 
-    private void deleteReminder() {
+    private void deleteTask() {
 
         // Only perform the delete if this is an existing reminder.
-        if (mCurrentReminderUri != null) {
+        if (mCurrentTaskUri != null) {
 
             // Call the ContentResolver to delete the reminder at the given content URI.
             // Pass in null for the selection and selection args because the mCurrentreminderUri
             // content URI already identifies the reminder that we want.
-            int rowsDeleted = getContentResolver().delete(mCurrentReminderUri, null, null);
+            int rowsDeleted = getContentResolver().delete(mCurrentTaskUri, null, null);
 
             // Show a toast message depending on whether or not the delete was successful.
             if (rowsDeleted == 0) {
@@ -511,7 +523,7 @@ public class AddTaskActivity extends AppCompatActivity implements
     }
 
     // On clicking the save button
-    public void saveReminder(){
+    public void saveTask(){
 
         ContentValues values = new ContentValues();
 
@@ -546,7 +558,7 @@ public class AddTaskActivity extends AppCompatActivity implements
             mRepeatTime = Integer.parseInt(mRepeatNo) * milMonth;
         }
 
-        if (mCurrentReminderUri == null) {
+        if (mCurrentTaskUri == null) {
             // This is a NEW reminder, so insert a new reminder into the provider,
             // returning the content URI for the new reminder.
             Uri newUri = getContentResolver().insert(AlarmReminderContract.AlarmReminderEntry.CONTENT_URI, values);
@@ -563,7 +575,7 @@ public class AddTaskActivity extends AppCompatActivity implements
             }
         } else {
 
-            int rowsAffected = getContentResolver().update(mCurrentReminderUri, values, null, null);
+            int rowsAffected = getContentResolver().update(mCurrentTaskUri, values, null, null);
 
             // Show a toast message depending on whether or not the update was successful.
             if (rowsAffected == 0) {
@@ -580,9 +592,9 @@ public class AddTaskActivity extends AppCompatActivity implements
         // Create a new notification
         if (mActive.equals("true")) {
             if (mRepeat.equals("true")) {
-                new AlarmScheduler().setRepeatAlarm(getApplicationContext(), selectedTimestamp, mCurrentReminderUri, mRepeatTime);
+                new AlarmScheduler().setRepeatAlarm(getApplicationContext(), selectedTimestamp, mCurrentTaskUri, mRepeatTime);
             } else if (mRepeat.equals("false")) {
-                new AlarmScheduler().setAlarm(getApplicationContext(), selectedTimestamp, mCurrentReminderUri);
+                new AlarmScheduler().setAlarm(getApplicationContext(), selectedTimestamp, mCurrentTaskUri);
             }        }
     }
 
@@ -608,7 +620,7 @@ public class AddTaskActivity extends AppCompatActivity implements
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
-                mCurrentReminderUri,    // Query the content URI for the current reminder
+                mCurrentTaskUri,    // Query the content URI for the current reminder
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments

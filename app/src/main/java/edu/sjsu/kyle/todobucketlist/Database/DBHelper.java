@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Kiyeon on 12/3/2017.
+ * THIS IS DEPRECATED
+ * THIS IS THE OLD DATABASE THAT I USED
  */
 
 public class DBHelper extends SQLiteOpenHelper {

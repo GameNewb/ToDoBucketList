@@ -1,5 +1,6 @@
 package edu.sjsu.kyle.todobucketlist;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,6 +34,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import android.app.LoaderManager;
@@ -42,14 +44,16 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.widget.Switch;
+import android.widget.Toast;
 
-import edu.sjsu.kyle.todobucketlist.Database.DBHelper;
 import edu.sjsu.kyle.todobucketlist.Database.AlarmReminderContract;
 import edu.sjsu.kyle.todobucketlist.Database.AlarmReminderDbHelper;
 
 public class ToDoListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     // Variables for the list item and its adapters
+    // arrayList and arrayAdapters are deprecated/unused due to new CursorAdapter
     ListView listView;
     ArrayList<String> arrayList;
     ArraySwipeAdapter<String> arrayAdapter;
@@ -59,17 +63,29 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
     String email;
     String toDoTxt;
 
-    // Database variable
-    DBHelper dbHelper;
-
     // SwipeLayout
     SwipeLayout swipeLayout;
 
-    private FloatingActionButton mAddReminderButton;
+    // Variable for adapter and alarms
     AlarmCursorAdapter mCursorAdapter;
     AlarmReminderDbHelper alarmReminderDbHelper = new AlarmReminderDbHelper(this);
     private static final int TASK_LOADER = 0;
 
+    // Variable for Task FAB
+    private FloatingActionButton mAddTaskButton;
+
+    // Variables for quickly adding tasks
+    Calendar mCalendar;
+    int mYear, mMonth, mHour, mMinute, mDay;
+    long mRepeatTime;
+    Switch mRepeatSwitch;
+    String mTitle;
+    String mTime;
+    String mDate;
+    String mRepeat;
+    String mRepeatNo;
+    String mRepeatType;
+    String mActive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,9 +129,9 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
             }
         });
 
-        mAddReminderButton = (FloatingActionButton) findViewById(R.id.fab);
+        mAddTaskButton = (FloatingActionButton) findViewById(R.id.fab);
 
-        mAddReminderButton.setOnClickListener(new View.OnClickListener() {
+        mAddTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddTaskActivity.class);
@@ -195,10 +211,37 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
                             public void onClick(DialogInterface dialog, int which) {
                                 String task = String.valueOf(taskEditText.getText());
 
-                                // Add to array when user clicks the quick add button
-                                arrayList.add(task);
-                                dbHelper.insertNewTask(task);
-                                arrayAdapter.notifyDataSetChanged();
+                                // Initialize default values
+                                mActive = "false";
+                                mRepeat = "false";
+                                mRepeatNo = Integer.toString(1);
+                                mRepeatType = "Hour";
+
+                                mCalendar = Calendar.getInstance();
+                                mHour = mCalendar.get(Calendar.HOUR_OF_DAY);
+                                mMinute = mCalendar.get(Calendar.MINUTE);
+                                mYear = mCalendar.get(Calendar.YEAR);
+                                mMonth = mCalendar.get(Calendar.MONTH) + 1;
+                                mDay = mCalendar.get(Calendar.DATE);
+
+                                mDate = mDay + "/" + mMonth + "/" + mYear;
+                                mTime = mHour + ":" + mMinute;
+
+                                ContentValues values = new ContentValues();
+
+                                values.put(AlarmReminderContract.AlarmReminderEntry.KEY_TITLE, task);
+                                values.put(AlarmReminderContract.AlarmReminderEntry.KEY_DATE, mDate);
+                                values.put(AlarmReminderContract.AlarmReminderEntry.KEY_TIME, mTime);
+                                values.put(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT, mRepeat);
+                                values.put(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_NO, mRepeatNo);
+                                values.put(AlarmReminderContract.AlarmReminderEntry.KEY_REPEAT_TYPE, mRepeatType);
+                                values.put(AlarmReminderContract.AlarmReminderEntry.KEY_ACTIVE, mActive);
+
+                                // This is a NEW reminder, so insert a new reminder into the provider,
+                                // returning the content URI for the new reminder.
+                                Uri newUri = getContentResolver().insert(AlarmReminderContract.AlarmReminderEntry.CONTENT_URI, values);
+                                Toast.makeText(getApplicationContext(), getString(R.string.editor_insert_task_successful),
+                                        Toast.LENGTH_SHORT).show();
                             }
                         })
                         .setNegativeButton("Cancel", null)
@@ -214,7 +257,7 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
     private void setSwipeLayout()
     {
         LayoutInflater factory = getLayoutInflater();
-        View view = factory.inflate(R.layout.alarm_items, null);
+        View view = factory.inflate(R.layout.to_do_items, null);
         swipeLayout = (SwipeLayout) view.findViewById(R.id.swipeLayout);
 
         // Set show mode
