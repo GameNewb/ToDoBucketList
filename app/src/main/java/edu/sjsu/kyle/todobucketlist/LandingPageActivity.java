@@ -36,6 +36,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Locale;
 
+import edu.sjsu.kyle.todobucketlist.Canvas.CanvasActivity;
 import edu.sjsu.kyle.todobucketlist.Weather.OpenWeatherMap;
 import edu.sjsu.kyle.todobucketlist.Weather.WeatherCommons;
 import edu.sjsu.kyle.todobucketlist.Weather.WeatherHelper;
@@ -64,6 +65,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
     // Activity components
     Button toDoList;
+    Button drawingCanvas;
 
     // Location and weather components
     LocationManager locationManager;
@@ -197,6 +199,15 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
                 intent.putExtra(IntentConstants.INTENT_TO_DO_LIST, email);
                 startActivity(intent);
                 //finish();
+            }
+        });
+
+        drawingCanvas = (Button) findViewById(R.id.goToCanvas);
+        drawingCanvas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LandingPageActivity.this, CanvasActivity.class);
+                startActivity(intent);
             }
         });
     }

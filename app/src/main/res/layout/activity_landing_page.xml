@@ -126,7 +126,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="80 °F"
+                android:text="-- °F"
                 android:textStyle="bold"
                 android:textSize="38sp"
                 />
@@ -148,7 +148,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Sunny"
+                android:text="N/A"
                 android:textStyle="bold"
                 android:textSize="26sp"
                 android:gravity="left" />
@@ -170,7 +170,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="San Jose, CA"
+                android:text="City, State"
                 android:textStyle="bold"
                 android:textSize="32sp"
                 android:gravity="center"/>
@@ -191,7 +191,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Humidity: "
+                android:text="Humidity: N/A"
                 android:textStyle="bold"
                 android:textSize="22sp"
                 android:gravity="center"/>
@@ -211,7 +211,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sunrise: \nSunset: "
+                android:text="Sunrise: N/A\nSunset: N/A"
                 android:textStyle="bold"
                 android:textSize="22sp"
                 android:gravity="center"/>
@@ -232,7 +232,7 @@
                 android:layout_weight=".75"
                 android:paddingLeft="8dp"
                 android:gravity="left"
-                android:text="Last Updated: 02 December 2017 23:08"
+                android:text="Last Updated: N/A"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -260,6 +260,21 @@
                 android:layout_weight="1"
                 android:text="To Do List"
                 android:id="@+id/goToList"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2.5"
+            android:gravity="end">
+
+            <Button
+                android:background="@drawable/logout_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Drawing Canvas"
+                android:id="@+id/goToCanvas"/>
         </LinearLayout>
 
     </RelativeLayout>
