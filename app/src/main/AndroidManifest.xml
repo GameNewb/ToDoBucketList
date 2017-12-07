@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="com.leanplum.LeanplumPushListenerService"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -27,9 +28,33 @@
             </intent-filter>
         </activity>
         <activity android:name=".ToDoListActivity" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ToDoListActivity"
+            />
         <activity android:name=".AddItemActivity" />
         <activity android:name=".EditListItemActivity" />
-        <activity android:name=".LandingPageActivity"></activity>
+        <activity android:name=".LandingPageActivity"/>
+
+        <activity android:name=".AddTaskActivity"
+            android:label="@string/title_activity_add_task"
+            android:parentActivityName=".ToDoListActivity"
+            android:theme="@style/AppTheme">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ToDoListActivity"
+                />
+        </activity>
+        <provider
+            android:name=".Database.AlarmReminderProvider"
+            android:authorities="edu.sjsu.kyle.todobucketlist"
+            android:exported="false" />
+
+        <service
+            android:name=".Reminder.ReminderAlarmService"
+            android:exported="false" />
+
     </application>
 
 </manifest>

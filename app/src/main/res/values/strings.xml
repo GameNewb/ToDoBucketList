@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">ToDoBucketList</string>
+    <string name="no_cardetails">Start adding your tasks, lazy butt!</string>
+    <string name="title_activity_add_task">Add Task</string>
+    <string name="title_activity_edit_task">Edit Task</string>
+    <string name="title_activity_licenses">Licenses</string>
+
+    <string name="add_task">Task</string>
+    <string name="details">Details</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="repeat">Repeat</string>
+    <string name="repeat_off">Off</string>
+    <string name="repeat_no">Repetition Interval </string>
+    <string name="repeat_type">Type of Repetitions</string>
+
+    <string name="action_discard_task">Discard Task</string>
+    <string name="action_save_task">Save Task</string>
+
+    <string name="editor_activity_title_new_task">Add Task Details</string>
+    <string name="editor_activity_title_edit_task">Edit Task</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="discard">Discard</string>
+
+    <string name="keep_editing">Keep Editing</string>
+    <string name="delete_dialog_msg">Delete this Task?</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="cancel">Cancel</string>
+    <string name="editor_delete_task_successful">Task deleted</string>
+
+    <string name="editor_delete_task_failed">Error with deleting task</string>
+
+    <string name="editor_insert_task_successful">Task saved</string>
+
+    <string name="editor_insert_task_failed">Error with saving task</string>
+
+    <string name="editor_update_task_successful">Task updated</string>
+
+    <string name="editor_update_task_failed">Error with updating task</string>
+
+    <string name="task_title">To-do Task</string>
 </resources>

@@ -13,4 +13,5 @@
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#737373</color>
     <color name="colorMap">#1a1c21</color>
+    <color name="fab_pressed">#546e7a</color>
 </resources>
