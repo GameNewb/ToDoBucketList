@@ -68,18 +68,21 @@ public class ReminderAlarmService extends IntentService {
             }
         } finally {
             if (cursor != null) {
+
+                // Set a "motivational" text description if description is empty - aka task has been deleted
+                if(AlarmReminderContract.getColumnString(cursor, AlarmReminderContract.AlarmReminderEntry.KEY_TITLE) == null && description.isEmpty())
+                {
+                    description = "You deleted a task that had an alarm. Did you actually complete it??";
+                }
+
                 cursor.close();
             }
-        }
 
-        // Set a "motivational" text description if description is empty - aka task has been deleted
-        if(AlarmReminderContract.getColumnString(cursor, AlarmReminderContract.AlarmReminderEntry.KEY_TITLE) == null && description.isEmpty())
-        {
-            description = "You deleted a task that had an alarm. Did you actually complete it??";
-        }
-        else if(description.isEmpty())
-        {
-            description = "I doubt you'll complete this task.";
+            if(description.isEmpty())
+            {
+                description = "I doubt you'll complete this task.";
+            }
+
         }
 
         // Create and Set up the notification to receive

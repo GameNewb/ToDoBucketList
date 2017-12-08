@@ -22,12 +22,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/AddTaskActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/AddTaskActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/AlarmCursorAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/AlarmCursorAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/IntentConstants.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/IntentConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/LandingPageActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/LandingPageActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/Reminder/ReminderAlarmService.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/Reminder/ReminderAlarmService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/ToDoListActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/ToDoListActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_landing_page.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_landing_page.xml" />
     </list>
     <ignored path="ToDoBucketList.iws" />
@@ -150,8 +145,8 @@
       <file leaf-file-name="ReminderAlarmService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/Reminder/ReminderAlarmService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+            <state relative-caret-position="475">
+              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
               <folding>
                 <element signature="method#randomTextGenerator#0;class#ReminderAlarmService#0" expanded="false" />
               </folding>
@@ -159,10 +154,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="activity_landing_page.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_landing_page.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="129" column="36" selection-start-line="129" selection-start-column="36" selection-end-line="129" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AlarmReminderContract.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/Database/AlarmReminderContract.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
+            <state relative-caret-position="375">
               <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
@@ -2302,9 +2310,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/AlarmCursorAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/IntentConstants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/LandingPageActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_landing_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/AddTaskActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/ToDoListActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_landing_page.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/Reminder/ReminderAlarmService.java" />
       </list>
     </option>
@@ -2501,7 +2509,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="Nexus_5X_API_25" />
+    <property name="device.picker.selection" value="98882045484f553153" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../AlarmReminder-master" />
@@ -3108,7 +3116,7 @@
         <state relative-caret-position="220">
           <caret line="11" column="67" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="67" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3349,41 +3357,41 @@
         <state relative-caret-position="360">
           <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
           <folding>
-            <element signature="e#2089#2138#0" expanded="true" />
-            <element signature="e#2162#2210#0" expanded="true" />
-            <element signature="e#2233#2280#0" expanded="true" />
-            <element signature="e#2304#2352#0" expanded="true" />
-            <element signature="e#2375#2422#0" expanded="true" />
-            <element signature="e#4554#4887#0" expanded="true" />
-            <element signature="e#4886#4887#0" expanded="true" />
-            <element signature="e#5026#5357#0" expanded="true" />
-            <element signature="e#5356#5357#0" expanded="true" />
-            <element signature="e#5493#5822#0" expanded="true" />
-            <element signature="e#5821#5822#0" expanded="true" />
-            <element signature="e#5961#6292#0" expanded="true" />
-            <element signature="e#6291#6292#0" expanded="true" />
-            <element signature="e#6428#6757#0" expanded="true" />
-            <element signature="e#6756#6757#0" expanded="true" />
-            <element signature="e#7286#7557#0" expanded="true" />
-            <element signature="e#7556#7557#0" expanded="true" />
-            <element signature="e#7696#7966#0" expanded="true" />
-            <element signature="e#7965#7966#0" expanded="true" />
-            <element signature="e#8102#8371#0" expanded="true" />
-            <element signature="e#8370#8371#0" expanded="true" />
-            <element signature="e#8509#8779#0" expanded="true" />
-            <element signature="e#8778#8779#0" expanded="true" />
-            <element signature="e#8914#9183#0" expanded="true" />
-            <element signature="e#9182#9183#0" expanded="true" />
-            <element signature="e#9546#9767#0" expanded="true" />
-            <element signature="e#9766#9767#0" expanded="true" />
-            <element signature="e#9820#9999#0" expanded="true" />
-            <element signature="e#9998#9999#0" expanded="true" />
-            <element signature="e#10360#11518#0" expanded="true" />
-            <element signature="e#11517#11518#0" expanded="true" />
-            <element signature="e#11572#11751#0" expanded="true" />
-            <element signature="e#11750#11751#0" expanded="true" />
-            <element signature="e#13197#13432#0" expanded="true" />
-            <element signature="e#13431#13432#0" expanded="true" />
+            <element signature="e#2089#2138#0" expanded="false" />
+            <element signature="e#2162#2210#0" expanded="false" />
+            <element signature="e#2233#2280#0" expanded="false" />
+            <element signature="e#2304#2352#0" expanded="false" />
+            <element signature="e#2375#2422#0" expanded="false" />
+            <element signature="e#4554#4887#0" expanded="false" />
+            <element signature="e#4886#4887#0" expanded="false" />
+            <element signature="e#5026#5357#0" expanded="false" />
+            <element signature="e#5356#5357#0" expanded="false" />
+            <element signature="e#5493#5822#0" expanded="false" />
+            <element signature="e#5821#5822#0" expanded="false" />
+            <element signature="e#5961#6292#0" expanded="false" />
+            <element signature="e#6291#6292#0" expanded="false" />
+            <element signature="e#6428#6757#0" expanded="false" />
+            <element signature="e#6756#6757#0" expanded="false" />
+            <element signature="e#7286#7557#0" expanded="false" />
+            <element signature="e#7556#7557#0" expanded="false" />
+            <element signature="e#7696#7966#0" expanded="false" />
+            <element signature="e#7965#7966#0" expanded="false" />
+            <element signature="e#8102#8371#0" expanded="false" />
+            <element signature="e#8370#8371#0" expanded="false" />
+            <element signature="e#8509#8779#0" expanded="false" />
+            <element signature="e#8778#8779#0" expanded="false" />
+            <element signature="e#8914#9183#0" expanded="false" />
+            <element signature="e#9182#9183#0" expanded="false" />
+            <element signature="e#9546#9767#0" expanded="false" />
+            <element signature="e#9766#9767#0" expanded="false" />
+            <element signature="e#9820#9999#0" expanded="false" />
+            <element signature="e#9998#9999#0" expanded="false" />
+            <element signature="e#10360#11518#0" expanded="false" />
+            <element signature="e#11517#11518#0" expanded="false" />
+            <element signature="e#11572#11751#0" expanded="false" />
+            <element signature="e#11750#11751#0" expanded="false" />
+            <element signature="e#13197#13432#0" expanded="false" />
+            <element signature="e#13431#13432#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3419,17 +3427,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="32" column="55" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_landing_page.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="111" column="35" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -3538,14 +3535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/Database/AlarmReminderContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/Development/Android/Sdk/sources/android-25/android/database/Cursor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -3554,10 +3543,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_landing_page.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="129" column="36" selection-start-line="129" selection-start-column="36" selection-end-line="129" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/Database/AlarmReminderContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/sjsu/kyle/todobucketlist/Reminder/ReminderAlarmService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="80" column="9" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+        <state relative-caret-position="475">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding>
             <element signature="method#randomTextGenerator#0;class#ReminderAlarmService#0" expanded="false" />
           </folding>

@@ -106,7 +106,7 @@
 
         <LinearLayout
             android:id="@+id/textProgressLayout"
-            android:layout_width="80dp"
+            android:layout_width="65dp"
             android:layout_height="match_parent"
             android:weightSum="1"
             android:gravity="start"
@@ -127,7 +127,7 @@
 
         <LinearLayout
             android:id="@+id/levelLayout"
-            android:layout_width="265dp"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             android:weightSum="1"
             android:gravity="start"
