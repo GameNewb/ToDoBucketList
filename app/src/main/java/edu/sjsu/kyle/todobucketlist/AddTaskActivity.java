@@ -3,15 +3,18 @@ package edu.sjsu.kyle.todobucketlist;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -81,6 +84,10 @@ public class AddTaskActivity extends AppCompatActivity implements
 
     private Typeface typeface;
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private int level;
+
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -93,6 +100,11 @@ public class AddTaskActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+
+        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        editor = preferences.edit();
+
+        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
 
         // Customize the ActionBar font
         SpannableString s = new SpannableString("To Do Task");
@@ -515,6 +527,12 @@ public class AddTaskActivity extends AppCompatActivity implements
                 // Otherwise, the delete was successful and we can display a toast.
                 Toast.makeText(this, getString(R.string.editor_delete_task_successful),
                         Toast.LENGTH_SHORT).show();
+
+                // Increment the level and add to shared preference
+                level++;
+                Toast.makeText(getApplicationContext(), "Exp is " + level, Toast.LENGTH_SHORT).show();
+                editor.putInt(IntentConstants.PREFERENCES_LEVELS, level);
+                editor.commit();
             }
         }
 

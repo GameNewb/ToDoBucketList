@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -13,6 +14,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +25,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,10 +82,21 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
     private Typeface typeface;
 
+    private Handler progressHandler;
+    private TextView levelText;
+    private ProgressBar expProgress;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private int level;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
+
+        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
 
         // Customize the ActionBar title font
         SpannableString s = new SpannableString("The Procrastinator");
@@ -142,6 +157,30 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
             }
         });
 
+        levelText = (TextView) findViewById(R.id.levelText);
+        levelText.setTypeface(typeface);
+        expProgress = (ProgressBar) findViewById(R.id.levelProgress);
+
+        //expProgress.setMax(20);
+        progressHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+                editor = preferences.edit();
+                level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+                Toast.makeText(getApplicationContext(), "Exp is " + level, Toast.LENGTH_SHORT).show();
+                expProgress.setProgress(level);
+            }
+        };
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                progressHandler.sendEmptyMessageAtTime(0,0);
+            }
+        }).start();
+
     }
 
     // Function to set the UI and Location components
@@ -197,7 +236,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
             public void onClick(View v) {
                 Intent intent = new Intent(LandingPageActivity.this, ToDoListActivity.class);
                 intent.putExtra(IntentConstants.INTENT_TO_DO_LIST, email);
-                startActivity(intent);
+                startActivityForResult(intent, IntentConstants.PREFERENCES_REQUEST_CODE);
                 //finish();
             }
         });
@@ -212,6 +251,33 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == IntentConstants.PREFERENCES_RESULT_CODE)
+        {
+            // Update the progress bar when we're back in the landing page
+            progressHandler = new Handler(){
+                @Override
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+                    preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+                    editor = preferences.edit();
+                    level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+                    expProgress.setProgress(level);
+                }
+            };
+
+            // Run a thread to process the message
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    progressHandler.sendEmptyMessageAtTime(0,0);
+                }
+            }).start();
+        }
+    }
 
     @Override
     protected void onPause() {

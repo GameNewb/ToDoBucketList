@@ -95,11 +95,63 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".55"
+        android:padding="3dp"
+        android:id="@+id/progressLayout"
+        android:background="@drawable/gradient_border">
+
+        <LinearLayout
+            android:id="@+id/textProgressLayout"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:gravity="left"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:id="@+id/levelText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Level :"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/levelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:gravity="left"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/textProgressLayout"
+            android:layout_toEndOf="@id/textProgressLayout">
+
+            <ProgressBar
+                android:indeterminate="false"
+                android:layout_centerInParent="true"
+                android:id="@+id/levelProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:max="30"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
     <!-- Layout for the Weather section -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1.75"
         android:padding="3dp"
         android:id="@+id/weatherLayout"
         android:background="@drawable/gradient_border">

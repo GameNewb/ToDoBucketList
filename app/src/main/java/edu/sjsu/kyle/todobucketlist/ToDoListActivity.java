@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -74,6 +75,10 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
     // Variable for Task FAB
     private FloatingActionButton mAddTaskButton;
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private int level;
+
     // Variables for quickly adding tasks
     Calendar mCalendar;
     int mYear, mMonth, mHour, mMinute, mDay;
@@ -91,6 +96,11 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+
+        // Initialize the SharedPreferences and get the level
+        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
 
         // Customize the ActionBar font
         SpannableString s = new SpannableString("To Do List");
@@ -178,7 +188,17 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
 
     @Override
     public void onBackPressed() {
+
+
+        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+
+        Intent intent = new Intent();
+        intent.putExtra(IntentConstants.PREFERENCES_LEVELS, level);
+        setResult(IntentConstants.PREFERENCES_RESULT_CODE, intent);
         super.onBackPressed();
+        finish();
 
         // Saving to a text file when back button is pressed
         //saveFromFile();

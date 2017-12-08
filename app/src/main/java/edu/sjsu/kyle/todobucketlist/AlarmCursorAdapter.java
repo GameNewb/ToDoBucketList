@@ -2,6 +2,7 @@ package edu.sjsu.kyle.todobucketlist;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Typeface;
@@ -32,6 +33,10 @@ public class AlarmCursorAdapter extends CursorSwipeAdapter {
     private Typeface typeface;
     private String generatedString;
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private int level;
+
     public AlarmCursorAdapter(Context context, Cursor c) {
         super(context, c, 0 /* flags */);
     }
@@ -44,6 +49,12 @@ public class AlarmCursorAdapter extends CursorSwipeAdapter {
     @Override
     public void bindView(View view, final Context context, final Cursor cursor) {
 
+        // Initialize the SharedPreferences and get the level
+        preferences = context.getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+
+        // Set views for fields
         mTitleText = (TextView) view.findViewById(R.id.recycle_title);
         mDateAndTimeText = (TextView) view.findViewById(R.id.recycle_date_time);
         mRepeatInfoText = (TextView) view.findViewById(R.id.recycle_repeat_info);
@@ -74,7 +85,16 @@ public class AlarmCursorAdapter extends CursorSwipeAdapter {
         mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Delete the item from the list
                 context.getContentResolver().delete(ContentUris.withAppendedId(AlarmReminderContract.AlarmReminderEntry.CONTENT_URI, cursor.getLong(0)), null,null);
+
+                // Add to levels when item/task is completed
+                level++;
+                Toast.makeText(context, "Exp is " + level, Toast.LENGTH_SHORT).show();
+                editor.putInt(IntentConstants.PREFERENCES_LEVELS, level);
+                editor.apply();
+
+                // Show toast message
                 deleteTask(v);
             }
         });
