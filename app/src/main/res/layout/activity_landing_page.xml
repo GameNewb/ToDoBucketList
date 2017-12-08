@@ -127,7 +127,7 @@
 
         <LinearLayout
             android:id="@+id/levelLayout"
-            android:layout_width="230dp"
+            android:layout_width="240dp"
             android:layout_height="match_parent"
             android:weightSum="1"
             android:gravity="start"
@@ -340,22 +340,26 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.5"
+        android:layout_weight=".85"
         android:padding="5dp"
         android:id="@+id/activityLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="4"
-            android:gravity="start">
+            android:weightSum="2.5"
+            android:gravity="start"
+            android:layout_marginTop="5dp">
 
             <Button
                 android:background="@drawable/logout_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:text="To Do List"
+                android:textSize="24sp"
                 android:id="@+id/goToList"/>
         </LinearLayout>
 
@@ -363,7 +367,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:weightSum="2.5"
-            android:gravity="end">
+            android:gravity="end"
+            android:layout_marginTop="5dp">
 
             <Button
                 android:background="@drawable/logout_button"
@@ -371,9 +376,35 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Drawing Canvas"
+                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
+                android:textSize="24sp"
                 android:id="@+id/goToCanvas"/>
         </LinearLayout>
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.15"
+        android:padding="5dp"
+        android:id="@+id/twitterLayout">
+
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/twitter_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/twitter_timeline">
+
+        </ListView>
     </RelativeLayout>
 
 </LinearLayout>

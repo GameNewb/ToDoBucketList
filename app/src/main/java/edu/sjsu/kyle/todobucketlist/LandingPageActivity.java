@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -24,7 +25,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,16 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthToken;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
+import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import java.lang.reflect.Type;
 import java.util.Locale;
@@ -78,6 +91,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
     private Typeface typeface;
 
+    // Level and EXP components for user
     private Handler progressHandler;
     private TextView levelText, currentExpText, nextLevelText;
     private ProgressBar expProgress;
@@ -87,16 +101,25 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
     private int level;
     private int toNextLevel;
 
+    // Twitter integration
+    TwitterLoginButton loginButton;
+    RelativeLayout twitterLayout;
+    ListView twitterTimeline;
+    boolean loggedIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Twitter.initialize(this);
         setContentView(R.layout.activity_landing_page);
 
+        // Get the appropriate levels and exp
         preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_EXP, Context.MODE_PRIVATE);
         editor = preferences.edit();
         exp = preferences.getInt(IntentConstants.PREFERENCES_EXP, 0);
         level = preferences.getInt(IntentConstants.PREFERENCES_CURRENT_LEVEL, 0);
         toNextLevel = preferences.getInt(IntentConstants.PREFERENCES_NEXT_EXP_LEVEL, 10);
+        loggedIn = preferences.getBoolean(IntentConstants.PREFERENCES_TWITTER_LOGIN, false);
 
         // Customize the ActionBar title font
         SpannableString s = new SpannableString("The Procrastinator");
@@ -112,6 +135,9 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
         // Set the buttons for corresponding Activities
         setActivityComponents();
+
+        // Set twitter button
+        setTwitterComponents();
     }
 
     // Function to set the UI components after Activity creation
@@ -216,8 +242,10 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         }
     }
 
+    // Function to set the Activity UI components
     private void setActivityComponents() {
         toDoList = (Button) findViewById(R.id.goToList);
+        toDoList.setTypeface(typeface);
         toDoList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,6 +257,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         });
 
         drawingCanvas = (Button) findViewById(R.id.goToCanvas);
+        drawingCanvas.setTypeface(typeface);
         drawingCanvas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -238,9 +267,66 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         });
     }
 
+    // Function to set the Twitter components
+    private void setTwitterComponents() {
+        loginButton = (TwitterLoginButton) findViewById(R.id.twitter_login);
+        twitterTimeline = (ListView) findViewById(R.id.twitter_timeline);
+        twitterLayout = (RelativeLayout) findViewById(R.id.twitterLayout);
+
+        // If user has logged in already, show the user timeline
+        if(loggedIn)
+        {
+            loginButton.setVisibility(View.GONE);
+            final UserTimeline userTimeline = new UserTimeline.Builder()
+                    .screenName("Kiyeonshi")
+                    .build();
+            final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(getApplicationContext())
+                    .setTimeline(userTimeline)
+                    .build();
+            twitterTimeline.setAdapter(adapter);
+        }
+        else
+        {
+            loginButton.setCallback(new Callback<TwitterSession>() {
+                @Override
+                public void success(Result<TwitterSession> result) {
+                    // Do something with result, which provides a TwitterSession for making API calls
+                    TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
+                    TwitterAuthToken authToken = session.getAuthToken();
+                    String token = authToken.token;
+                    String secret = authToken.secret;
+
+                    loginButton.setVisibility(View.GONE);
+                    loggedIn = true;
+                    editor.putBoolean(IntentConstants.PREFERENCES_TWITTER_LOGIN, loggedIn);
+                    editor.apply();
+
+                    final UserTimeline userTimeline = new UserTimeline.Builder()
+                            .screenName("Kiyeonshi")
+                            .build();
+                    final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(getApplicationContext())
+                            .setTimeline(userTimeline)
+                            .build();
+                    twitterTimeline.setAdapter(adapter);
+                }
+
+                @Override
+                public void failure(TwitterException exception) {
+                    // Do something on failure
+                    loggedIn = false;
+                    Toast.makeText(getApplicationContext(), "Unable to sign in. Try again", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // Pass the activity result to the login button.
+        loginButton.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == IntentConstants.PREFERENCES_RESULT_CODE)
         {
@@ -263,13 +349,12 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
                 level = preferences.getInt(IntentConstants.PREFERENCES_CURRENT_LEVEL, 0);
                 toNextLevel = preferences.getInt(IntentConstants.PREFERENCES_NEXT_EXP_LEVEL, 10);
 
-                levelText.setText("Level " + String.valueOf(level) + ":");
                 // Update the UI components based on the current user exp
+                levelText.setText("Level " + String.valueOf(level) + ":");
                 currentExpText.setText(String.valueOf(exp));
+
                 // Set text field for next level
                 nextLevelText.setText(String.valueOf(toNextLevel));
-
-                //toNextLevel = Integer.parseInt(nextLevelText.getText().toString());
 
                 // If user reaches the next level exp requirement, increase max for progress bar
                 if(exp >= toNextLevel)
@@ -279,8 +364,10 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
                     nextLevelText.setText(String.valueOf(toNextLevel));
 
+                    // Increase user level
                     level++;
                     levelText.setText("Level " + String.valueOf(level) + ":");
+
                     // Put to sharedpreferences
                     editor.putInt(IntentConstants.PREFERENCES_CURRENT_LEVEL, level);
                     editor.putInt(IntentConstants.PREFERENCES_NEXT_EXP_LEVEL, toNextLevel);

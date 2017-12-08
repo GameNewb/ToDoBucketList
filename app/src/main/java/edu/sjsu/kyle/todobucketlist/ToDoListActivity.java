@@ -203,7 +203,6 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
         //saveFromFile();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);

@@ -13,6 +13,7 @@
     <string name="repeat_off">Off</string>
     <string name="repeat_no">Repetition Interval </string>
     <string name="repeat_type">Type of Repetitions</string>
+    <string name="important">Important</string>
 
     <string name="action_discard_task">Discard Task</string>
     <string name="action_save_task">Save Task</string>
@@ -55,5 +56,8 @@
     <string name="sml">Small</string>
     <string name="med">Medium</string>
     <string name="lrg">Large</string>
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">BMZx5FUo9EUYBJ22cylxCB59k</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">gXodtsYBSEpcjl3iPNdnaZgcOncRSRiRy1CE9nqwoig5S8veos</string>
 
 </resources>

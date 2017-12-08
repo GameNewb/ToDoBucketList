@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="tweet-composer-3.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/821b5e2ec72304c7c480efdf501c095877367412/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/821b5e2ec72304c7c480efdf501c095877367412/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

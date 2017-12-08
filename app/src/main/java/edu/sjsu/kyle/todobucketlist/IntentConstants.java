@@ -29,6 +29,7 @@ public class IntentConstants
     public final static String PREFERENCES_EXP = "expPrefs";
     public final static String PREFERENCES_CURRENT_LEVEL = "curLevel";
     public final static String PREFERENCES_NEXT_EXP_LEVEL = "nextLevel";
+    public final static String PREFERENCES_TWITTER_LOGIN = "twitter";
     public final static int PREFERENCES_REQUEST_CODE = 9001;
     public final static int PREFERENCES_RESULT_CODE = 9001;
 }

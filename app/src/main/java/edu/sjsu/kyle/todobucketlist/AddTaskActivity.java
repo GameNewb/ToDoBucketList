@@ -325,7 +325,6 @@ public class AddTaskActivity extends AppCompatActivity implements
             mRepeatText.setText(R.string.repeat_off);
         }
     }
-
     // On clicking repeat type button
     public void selectRepeatType(View v){
         final String[] items = new String[5];
@@ -586,8 +585,8 @@ public class AddTaskActivity extends AppCompatActivity implements
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the insertion was successful and we can display a toast.
-                Toast.makeText(this, getString(R.string.editor_insert_task_successful),
-                        Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this, getString(R.string.editor_insert_task_successful),
+               //         Toast.LENGTH_SHORT).show();
             }
         } else {
 
@@ -611,7 +610,8 @@ public class AddTaskActivity extends AppCompatActivity implements
                 new AlarmScheduler().setRepeatAlarm(getApplicationContext(), selectedTimestamp, mCurrentTaskUri, mRepeatTime);
             } else if (mRepeat.equals("false")) {
                 new AlarmScheduler().setAlarm(getApplicationContext(), selectedTimestamp, mCurrentTaskUri);
-            }        }
+            }
+        }
     }
 
     // On pressing the back button

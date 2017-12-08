@@ -9,8 +9,21 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="edu.sjsu.kyle.todobucketlist.permission.MAPS_RECEIVE"/>
     <uses-permission android:name="com.leanplum.LeanplumPushListenerService" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+
+    <meta-data
+        android:name="com.google.android.maps.v2.API_KEY"
+        android:value="AIzaSyA1rXKoZY99gXSAuuncMeKGKDSFRB1oD70" />
+
+    <uses-library
+        android:name="com.google.android.maps"
+        android:required="false" />
 
     <application
         android:allowBackup="true"

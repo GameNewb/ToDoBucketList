@@ -1,10 +1,13 @@
 package edu.sjsu.kyle.todobucketlist;
 
+import android.*;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.res.ResourcesCompat;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Typeface typeface;
     private GoogleApiClient googleApiClient;
     int signOutCode;
+    int PERMISSION = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +97,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(signOutCode != 0)
         {
             signOut();
+        }
+
+        // Runtime permission for locations and network
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{
+                    android.Manifest.permission.INTERNET,
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION,
+                    android.Manifest.permission.ACCESS_NETWORK_STATE,
+                    android.Manifest.permission.SYSTEM_ALERT_WINDOW,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+
+            }, PERMISSION);
         }
         startActivityForResult(intent, IntentConstants.INTENT_GOOGLE_REQUEST_CODE);
 
