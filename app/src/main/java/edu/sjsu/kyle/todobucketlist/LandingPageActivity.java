@@ -1,7 +1,6 @@
 package edu.sjsu.kyle.todobucketlist;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -34,10 +33,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.lang.reflect.Type;
-import java.util.List;
 import java.util.Locale;
 
 import edu.sjsu.kyle.todobucketlist.Canvas.CanvasActivity;
@@ -83,20 +79,24 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
     private Typeface typeface;
 
     private Handler progressHandler;
-    private TextView levelText;
+    private TextView levelText, currentExpText, nextLevelText;
     private ProgressBar expProgress;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    private int exp;
     private int level;
+    private int toNextLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
-        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_EXP, Context.MODE_PRIVATE);
         editor = preferences.edit();
-        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+        exp = preferences.getInt(IntentConstants.PREFERENCES_EXP, 0);
+        level = preferences.getInt(IntentConstants.PREFERENCES_CURRENT_LEVEL, 0);
+        toNextLevel = preferences.getInt(IntentConstants.PREFERENCES_NEXT_EXP_LEVEL, 10);
 
         // Customize the ActionBar title font
         SpannableString s = new SpannableString("The Procrastinator");
@@ -157,30 +157,17 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
             }
         });
 
+        // Set fields for level progress
         levelText = (TextView) findViewById(R.id.levelText);
+        currentExpText = (TextView) findViewById(R.id.currentExpText);
+        nextLevelText = (TextView) findViewById(R.id.nextLevelText);
         levelText.setTypeface(typeface);
+        currentExpText.setTypeface(typeface);
+        nextLevelText.setTypeface(typeface);
         expProgress = (ProgressBar) findViewById(R.id.levelProgress);
 
-        //expProgress.setMax(20);
-        progressHandler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
-                editor = preferences.edit();
-                level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
-                Toast.makeText(getApplicationContext(), "Exp is " + level, Toast.LENGTH_SHORT).show();
-                expProgress.setProgress(level);
-            }
-        };
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                progressHandler.sendEmptyMessageAtTime(0,0);
-            }
-        }).start();
-
+        // Handle the UI changes for progress bar when view is created
+        updateProgressBar();
     }
 
     // Function to set the UI and Location components
@@ -257,26 +244,64 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
         if(resultCode == IntentConstants.PREFERENCES_RESULT_CODE)
         {
-            // Update the progress bar when we're back in the landing page
-            progressHandler = new Handler(){
-                @Override
-                public void handleMessage(Message msg) {
-                    super.handleMessage(msg);
-                    preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
-                    editor = preferences.edit();
-                    level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
-                    expProgress.setProgress(level);
-                }
-            };
-
-            // Run a thread to process the message
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    progressHandler.sendEmptyMessageAtTime(0,0);
-                }
-            }).start();
+            updateProgressBar();
         }
+    }
+
+    // Function that updates the progress bar through UI threads and handlers
+    private void updateProgressBar()
+    {
+        // Update the progress bar when we're back in the landing page
+        progressHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                // Get the appropriate exp and set the progress bar value
+                preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_EXP, Context.MODE_PRIVATE);
+                editor = preferences.edit();
+                exp = preferences.getInt(IntentConstants.PREFERENCES_EXP, 0);
+                level = preferences.getInt(IntentConstants.PREFERENCES_CURRENT_LEVEL, 0);
+                toNextLevel = preferences.getInt(IntentConstants.PREFERENCES_NEXT_EXP_LEVEL, 10);
+
+                levelText.setText("Level " + String.valueOf(level) + ":");
+                // Update the UI components based on the current user exp
+                currentExpText.setText(String.valueOf(exp));
+                // Set text field for next level
+                nextLevelText.setText(String.valueOf(toNextLevel));
+
+                //toNextLevel = Integer.parseInt(nextLevelText.getText().toString());
+
+                // If user reaches the next level exp requirement, increase max for progress bar
+                if(exp >= toNextLevel)
+                {
+                    toNextLevel = (int) (toNextLevel * 1.5);
+                    expProgress.setMax(toNextLevel);
+
+                    nextLevelText.setText(String.valueOf(toNextLevel));
+
+                    level++;
+                    levelText.setText("Level " + String.valueOf(level) + ":");
+                    // Put to sharedpreferences
+                    editor.putInt(IntentConstants.PREFERENCES_CURRENT_LEVEL, level);
+                    editor.putInt(IntentConstants.PREFERENCES_NEXT_EXP_LEVEL, toNextLevel);
+                    editor.apply();
+                }
+                else
+                {
+                    expProgress.setMax(toNextLevel);
+                }
+
+                expProgress.setProgress(exp);
+            }
+        };
+
+        // Run a thread to process the message
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                progressHandler.sendEmptyMessageAtTime(0,0);
+            }
+        }).start();
     }
 
     @Override

@@ -95,6 +95,7 @@
 
     </RelativeLayout>
 
+    <!-- Layout for EXP bar -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -105,10 +106,10 @@
 
         <LinearLayout
             android:id="@+id/textProgressLayout"
-            android:layout_width="60dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:weightSum="1"
-            android:gravity="left"
+            android:gravity="start"
             android:layout_marginTop="2dp">
 
             <TextView
@@ -118,17 +119,18 @@
                 android:layout_weight="1"
                 android:text="Level :"
                 android:textStyle="bold"
-                android:textSize="22sp"
+                android:textSize="26sp"
+                android:padding="5dp"
                 />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/levelLayout"
-            android:layout_width="match_parent"
+            android:layout_width="265dp"
             android:layout_height="match_parent"
             android:weightSum="1"
-            android:gravity="left"
+            android:gravity="start"
             android:layout_marginTop="2dp"
             android:layout_toRightOf="@id/textProgressLayout"
             android:layout_toEndOf="@id/textProgressLayout">
@@ -141,9 +143,52 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:max="30"
+                android:progressBackgroundTint="@color/colorYellowShade"
+                android:progressTint="@color/colorPrimaryText"
                 />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nextLevelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:gravity="start"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/levelLayout"
+            android:layout_toEndOf="@id/levelLayout">
+
+            <TextView
+                android:id="@+id/currentExpText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".35"
+                android:gravity="end"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                />
+
+            <TextView
+                android:id="@+id/expDivider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:text=" / "
+                android:textStyle="bold"
+                android:textSize="24sp"
+                />
+
+            <TextView
+                android:id="@+id/nextLevelText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".35"
+                android:text="10"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                />
         </LinearLayout>
     </RelativeLayout>
 

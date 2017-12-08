@@ -35,7 +35,7 @@ public class AlarmCursorAdapter extends CursorSwipeAdapter {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
-    private int level;
+    private int exp;
 
     public AlarmCursorAdapter(Context context, Cursor c) {
         super(context, c, 0 /* flags */);
@@ -49,10 +49,10 @@ public class AlarmCursorAdapter extends CursorSwipeAdapter {
     @Override
     public void bindView(View view, final Context context, final Cursor cursor) {
 
-        // Initialize the SharedPreferences and get the level
-        preferences = context.getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        // Initialize the SharedPreferences and get the exp
+        preferences = context.getSharedPreferences(IntentConstants.PREFERENCES_EXP, Context.MODE_PRIVATE);
         editor = preferences.edit();
-        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+        exp = preferences.getInt(IntentConstants.PREFERENCES_EXP, 0);
 
         // Set views for fields
         mTitleText = (TextView) view.findViewById(R.id.recycle_title);
@@ -89,9 +89,8 @@ public class AlarmCursorAdapter extends CursorSwipeAdapter {
                 context.getContentResolver().delete(ContentUris.withAppendedId(AlarmReminderContract.AlarmReminderEntry.CONTENT_URI, cursor.getLong(0)), null,null);
 
                 // Add to levels when item/task is completed
-                level++;
-                Toast.makeText(context, "Exp is " + level, Toast.LENGTH_SHORT).show();
-                editor.putInt(IntentConstants.PREFERENCES_LEVELS, level);
+                exp++;
+                editor.putInt(IntentConstants.PREFERENCES_EXP, exp);
                 editor.apply();
 
                 // Show toast message

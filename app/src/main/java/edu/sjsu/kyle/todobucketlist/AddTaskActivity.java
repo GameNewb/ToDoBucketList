@@ -14,7 +14,6 @@ import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -86,7 +85,7 @@ public class AddTaskActivity extends AppCompatActivity implements
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
-    private int level;
+    private int exp;
 
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
@@ -101,10 +100,10 @@ public class AddTaskActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
-        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_EXP, Context.MODE_PRIVATE);
         editor = preferences.edit();
 
-        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+        exp = preferences.getInt(IntentConstants.PREFERENCES_EXP, 0);
 
         // Customize the ActionBar font
         SpannableString s = new SpannableString("To Do Task");
@@ -227,7 +226,7 @@ public class AddTaskActivity extends AppCompatActivity implements
 
         // Initialize default values
         mActive = "true";
-        mRepeat = "false";
+        mRepeat = "true";
         mRepeatNo = Integer.toString(1);
         mRepeatType = "Hour";
 
@@ -463,7 +462,7 @@ public class AddTaskActivity extends AppCompatActivity implements
             DialogInterface.OnClickListener discardButtonClickListener) {
 
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the postive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.unsaved_changes_dialog_msg);
         builder.setPositiveButton(R.string.discard, discardButtonClickListener);
@@ -528,10 +527,9 @@ public class AddTaskActivity extends AppCompatActivity implements
                 Toast.makeText(this, getString(R.string.editor_delete_task_successful),
                         Toast.LENGTH_SHORT).show();
 
-                // Increment the level and add to shared preference
-                level++;
-                Toast.makeText(getApplicationContext(), "Exp is " + level, Toast.LENGTH_SHORT).show();
-                editor.putInt(IntentConstants.PREFERENCES_LEVELS, level);
+                // Increment the exp and add to shared preference
+                exp++;
+                editor.putInt(IntentConstants.PREFERENCES_EXP, exp);
                 editor.commit();
             }
         }

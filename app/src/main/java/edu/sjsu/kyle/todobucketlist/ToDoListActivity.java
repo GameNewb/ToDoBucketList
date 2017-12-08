@@ -77,7 +77,7 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
-    private int level;
+    private int exp;
 
     // Variables for quickly adding tasks
     Calendar mCalendar;
@@ -97,10 +97,10 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
 
-        // Initialize the SharedPreferences and get the level
-        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        // Initialize the SharedPreferences and get the exp
+        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_EXP, Context.MODE_PRIVATE);
         editor = preferences.edit();
-        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+        exp = preferences.getInt(IntentConstants.PREFERENCES_EXP, 0);
 
         // Customize the ActionBar font
         SpannableString s = new SpannableString("To Do List");
@@ -189,13 +189,12 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
     @Override
     public void onBackPressed() {
 
-
-        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_LEVELS, Context.MODE_PRIVATE);
+        preferences = getApplicationContext().getSharedPreferences(IntentConstants.PREFERENCES_EXP, Context.MODE_PRIVATE);
         editor = preferences.edit();
-        level = preferences.getInt(IntentConstants.PREFERENCES_LEVELS, 0);
+        exp = preferences.getInt(IntentConstants.PREFERENCES_EXP, 0);
 
         Intent intent = new Intent();
-        intent.putExtra(IntentConstants.PREFERENCES_LEVELS, level);
+        intent.putExtra(IntentConstants.PREFERENCES_EXP, exp);
         setResult(IntentConstants.PREFERENCES_RESULT_CODE, intent);
         super.onBackPressed();
         finish();
@@ -260,8 +259,8 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
                                 // This is a NEW reminder, so insert a new reminder into the provider,
                                 // returning the content URI for the new reminder.
                                 Uri newUri = getContentResolver().insert(AlarmReminderContract.AlarmReminderEntry.CONTENT_URI, values);
-                                Toast.makeText(getApplicationContext(), getString(R.string.editor_insert_task_successful),
-                                        Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), getString(R.string.editor_insert_task_successful),
+                                //        Toast.LENGTH_SHORT).show();
                             }
                         })
                         .setNegativeButton("Cancel", null)
