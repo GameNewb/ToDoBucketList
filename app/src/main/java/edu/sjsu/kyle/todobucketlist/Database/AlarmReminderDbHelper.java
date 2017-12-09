@@ -4,6 +4,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
+/*
+ * Credits to delaroystudios for providing an excellent tutorial regarding Alarm Managers
+ * https://www.youtube.com/watch?v=P46LTiPlvUA&t=894s
+ *
+ */
+
 public class AlarmReminderDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "alarmreminder.db";

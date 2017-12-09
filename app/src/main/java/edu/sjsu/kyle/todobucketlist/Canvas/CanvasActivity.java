@@ -24,6 +24,12 @@ import android.widget.LinearLayout;
 import edu.sjsu.kyle.todobucketlist.R;
 import edu.sjsu.kyle.todobucketlist.TypefaceSpan;
 
+/**
+ * Created by Kiyeon on 12/7/2017.
+ * Credits go to Sue Smith for providing an excellent tutorial on Canvas drawing
+ * https://code.tutsplus.com/tutorials/android-sdk-create-a-drawing-app-touch-interaction--mobile-19202
+ */
+
 public class CanvasActivity extends AppCompatActivity implements View.OnClickListener{
 
     // Custom drawing view
@@ -39,7 +45,7 @@ public class CanvasActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_canvas);
 
         // Customize the ActionBar font
-        SpannableString s = new SpannableString("Drawing Canvas");
+        SpannableString s = new SpannableString("Doodle Block");
         s.setSpan(new TypefaceSpan(this, "ConcursoItalian_BTN.ttf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 

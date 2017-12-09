@@ -83,6 +83,7 @@ public class AddTaskActivity extends AppCompatActivity implements
 
     private Typeface typeface;
 
+    // Shared preferences to store the data
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private int exp;

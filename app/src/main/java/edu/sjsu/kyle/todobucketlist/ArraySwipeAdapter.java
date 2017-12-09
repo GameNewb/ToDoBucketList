@@ -6,6 +6,10 @@ import java.util.List;
 
 /**
  * Created by Kiyeon on 12/3/2017.
+ * DEPRECATED - NO LONGER BEING USED
+ * KEEPING IT HERE FOR LATER USAGE
+ * Kudos to daimajia for implementing this awesome swipe layout adapter
+ * https://github.com/daimajia/AndroidSwipeLayout
  */
 
 public class ArraySwipeAdapter<T> extends com.daimajia.swipe.adapters.ArraySwipeAdapter {

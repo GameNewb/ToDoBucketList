@@ -274,6 +274,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         twitterLayout = (RelativeLayout) findViewById(R.id.twitterLayout);
 
         // If user has logged in already, show the user timeline
+        // Else, show the Twitter Login Button and then display the timeline
         if(loggedIn)
         {
             loginButton.setVisibility(View.GONE);
@@ -455,6 +456,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
 
     }
 
+    // Function that processes the weather variables and posts on the UI thread
     private class GetWeather extends AsyncTask<String, Void, String>{
         ProgressDialog progressDialog = new ProgressDialog(LandingPageActivity.this);
 
@@ -508,6 +510,7 @@ public class LandingPageActivity extends AppCompatActivity implements LocationLi
         }
     }
 
+    // Function that converts the temperature obtain from the weather API into Fahrenheit
     private double convertTemperature(double kelvinTemp)
     {
         double fahrenheit;

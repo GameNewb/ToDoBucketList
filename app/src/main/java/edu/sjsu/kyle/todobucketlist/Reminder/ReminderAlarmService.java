@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -58,7 +59,7 @@ public class ReminderAlarmService extends IntentService {
         String description = "";
         try {
             if (cursor != null && cursor.moveToFirst()) {
-                if(AlarmReminderContract.getColumnString(cursor, AlarmReminderContract.AlarmReminderEntry.KEY_TITLE) == null)
+                if(cursor == null)
                 {
                     description = " - You have a task to complete. DO IT! NOW!";
                 }
@@ -70,24 +71,22 @@ public class ReminderAlarmService extends IntentService {
             if (cursor != null) {
                 cursor.close();
             }
-
-            if(description.isEmpty())
-            {
-                description = "I doubt you'll complete this task.";
-            }
-
         }
 
-        // Create and Set up the notification to receive
-        Notification note = new NotificationCompat.Builder(this)
-                .setContentTitle(getString(R.string.task_title))
-                .setContentText(description)
-                .setSmallIcon(R.drawable.ic_add_alert_black_24dp)
-                .setContentIntent(operation)
-                .setAutoCancel(true)
-                .build();
+        // Only send notifications for when an item has a description
+        if(!description.isEmpty())
+        {
+            // Create and Set up the notification to receive
+            Notification note = new NotificationCompat.Builder(this)
+                    .setContentTitle(getString(R.string.task_title))
+                    .setContentText(description)
+                    .setSmallIcon(R.drawable.ic_add_alert_black_24dp)
+                    .setContentIntent(operation)
+                    .setAutoCancel(true)
+                    .build();
 
-        manager.notify(NOTIFICATION_ID, note);
+            manager.notify(NOTIFICATION_ID, note);
+        }
     }
 
     // Function that generates 10 random text strings to append to the notification

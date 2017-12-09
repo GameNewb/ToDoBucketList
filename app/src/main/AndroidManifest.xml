@@ -47,8 +47,6 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".ToDoListActivity" />
 
-        <activity android:name=".AddItemActivity" />
-        <activity android:name=".EditListItemActivity" />
         <activity android:name=".LandingPageActivity" />
         <activity
             android:name=".AddTaskActivity"

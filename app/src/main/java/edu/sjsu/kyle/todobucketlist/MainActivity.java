@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    // Function that handles the google signin request
     private void handleResult(GoogleSignInResult result)
     {
         // If login success

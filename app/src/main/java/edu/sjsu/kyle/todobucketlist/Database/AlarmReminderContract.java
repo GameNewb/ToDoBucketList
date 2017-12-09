@@ -5,6 +5,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+
+/*
+ * Credits to delaroystudios for providing an excellent tutorial regarding Alarm Managers
+ * https://www.youtube.com/watch?v=P46LTiPlvUA&t=894s
+ *
+ */
+
+
 public class AlarmReminderContract {
 
     private AlarmReminderContract() {}

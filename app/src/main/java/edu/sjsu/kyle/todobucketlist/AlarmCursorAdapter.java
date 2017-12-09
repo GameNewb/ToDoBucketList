@@ -23,6 +23,15 @@ import java.util.Random;
 
 import edu.sjsu.kyle.todobucketlist.Database.AlarmReminderContract;
 
+/*
+ * Credits to delaroystudios for providing an excellent tutorial regarding Alarm Managers
+ * https://www.youtube.com/watch?v=P46LTiPlvUA&t=894s
+ *
+ * Slighty modified with daimajia's CursorSwipeAdapter
+ * https://github.com/daimajia/AndroidSwipeLayout
+ *
+ */
+
 public class AlarmCursorAdapter extends CursorSwipeAdapter {
 
     private TextView mTitleText, mDateAndTimeText, mRepeatInfoText, mDeleteReminderText;

@@ -6,6 +6,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 
+/*
+ * Credits to delaroystudios for providing an excellent tutorial regarding Alarm Managers
+ * https://www.youtube.com/watch?v=P46LTiPlvUA&t=894s
+ *
+ */
+
 public class AlarmScheduler {
 
     /**

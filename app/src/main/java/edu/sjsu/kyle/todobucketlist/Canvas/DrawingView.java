@@ -20,6 +20,8 @@ import edu.sjsu.kyle.todobucketlist.R;
 
 /**
  * Created by Kiyeon on 12/7/2017.
+ * Credits go to Sue Smith for providing an excellent tutorial on Canvas drawing
+ * https://code.tutsplus.com/tutorials/android-sdk-create-a-drawing-app-touch-interaction--mobile-19202
  */
 
 public class DrawingView extends View {

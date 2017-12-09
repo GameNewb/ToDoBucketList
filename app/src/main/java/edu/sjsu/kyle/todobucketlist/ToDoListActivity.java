@@ -193,14 +193,12 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
         editor = preferences.edit();
         exp = preferences.getInt(IntentConstants.PREFERENCES_EXP, 0);
 
+        // Set the result back to obtain the preference data
         Intent intent = new Intent();
         intent.putExtra(IntentConstants.PREFERENCES_EXP, exp);
         setResult(IntentConstants.PREFERENCES_RESULT_CODE, intent);
         super.onBackPressed();
         finish();
-
-        // Saving to a text file when back button is pressed
-        //saveFromFile();
     }
 
     @Override
@@ -218,6 +216,7 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
+            // When the + Context menu item is clicked, quickly add a task and populate the values wit the given text
             case R.id.addTask:
                 final EditText taskEditText = new EditText(this);
                 AlertDialog dialog = new AlertDialog.Builder(this)
@@ -433,12 +432,13 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
      */
     private void setClicks()
     {
+        /*
         listView.setAdapter(mCursorAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.setClass(ToDoListActivity.this, EditListItemActivity.class);
+                intent.setClass(ToDoListActivity.this, AddTaskActivity.class);
                 intent.putExtra(IntentConstants.INTENT_LIST_DATA, arrayList.get(position).toString());
                 intent.putExtra(IntentConstants.INTENT_ITEM_POSITION, position);
                 startActivityForResult(intent, IntentConstants.INTENT_REQUEST_CODE_TWO);
@@ -455,6 +455,6 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
             }
-        });
+        });*/
     }
 }

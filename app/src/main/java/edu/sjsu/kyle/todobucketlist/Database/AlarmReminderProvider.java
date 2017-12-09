@@ -11,6 +11,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+
+/*
+ * Credits to delaroystudios for providing an excellent tutorial regarding Alarm Managers
+ * https://www.youtube.com/watch?v=P46LTiPlvUA&t=894s
+ *
+ */
+
 public class AlarmReminderProvider extends ContentProvider {
 
     public static final String LOG_TAG = AlarmReminderProvider.class.getSimpleName();
