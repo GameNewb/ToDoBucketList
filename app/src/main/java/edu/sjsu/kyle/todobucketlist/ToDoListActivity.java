@@ -366,9 +366,9 @@ public class ToDoListActivity extends AppCompatActivity implements LoaderManager
     /*
      * DEPRECATED - Not using txt file saving anymore
      * Keeping it here for functional requirement
-     * Function to read the array/list data from a txt file
+     * Function to save the data to a txtfile
      */
-    private void saveFromFile()
+    private void saveToFile()
     {
         try {
             PrintWriter pw = new PrintWriter(openFileOutput(toDoTxt, Context.MODE_PRIVATE));

@@ -29,7 +29,10 @@ public class OpenWeatherMap {
 
     }
 
-    public OpenWeatherMap(WeatherCoordinateModel coord, List<WeatherDetailsModel> weather, String base, WeatherDataModel main, WeatherWindModel wind, WeatherRainModel rain, WeatherCloudsModel clouds, WeatherSysModel sys, int dt, int id, String name, int cod) {
+    public OpenWeatherMap(WeatherCoordinateModel coord, List<WeatherDetailsModel> weather,
+                          String base, WeatherDataModel main, WeatherWindModel wind,
+                          WeatherRainModel rain, WeatherCloudsModel clouds, WeatherSysModel sys,
+                          int dt, int id, String name, int cod) {
         this.coord = coord;
         this.weather = weather;
         this.base = base;
